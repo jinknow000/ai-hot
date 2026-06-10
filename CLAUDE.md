@@ -67,9 +67,9 @@ GitHub Actions (00:30 CST)
 - `LLM_MODEL` — Default `deepseek-chat`
 - `DEPLOY_HOST/USER/PATH/SSH_KEY` — GitHub Actions deployment targets
 
-### GitHub Actions
+### CI/CD
 
-- **Trigger**: Daily at 00:30 CST (`30 16 * * *` UTC), workflow_dispatch, push to main
-- **Validation**: Build fails if any platform returns 0 items
-- **Artifacts**: `aihot-site` retained 7 days
-- **Secrets**: All credentials via GitHub Secrets, never in repo
+- **GitHub Actions** (`.github/workflows/daily-aihot.yml`): Trigger daily at 00:30 CST, workflow_dispatch, push to main. Validation fails if any platform returns 0 items.
+- **Gitee Pipelines** (`.gitee-ci.yml`): Mirror config for domestic deployment. Uses shell tasks instead of marketplace actions. Same cron schedule.
+- **Secrets**: All credentials via GitHub Secrets / Gitee 环境变量, never in repo.
+- **Artifacts**: `aihot-site` retained 7 days (GitHub only).

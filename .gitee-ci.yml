@@ -1,0 +1,118 @@
+# AI 热点雷达 - Gitee 流水线配置
+# 文档: https://help.gitee.com/enterprise/pipeline/
+version: "1.0"
+
+name: "Daily AI Hot Radar"
+
+# ========== 触发器 ==========
+triggers:
+  # 定时触发: 每天北京时间 00:30 (UTC+8 → 前一天 16:30 UTC)
+  schedule:
+    - cron: "30 16 * * *"
+  # Push 触发 (仅 main 分支)
+  push:
+    branches:
+      precise:
+        - main
+  # 手动触发
+  manual: enable
+
+# ========== 全局环境变量 ==========
+# 密钥类变量请在 Gitee 仓库 → 管理 → 环境变量管理 中配置
+# REDFOX_API_KEY / LLM_API_KEY / LLM_BASE_URL / LLM_MODEL
+# DEPLOY_HOST / DEPLOY_USER / DEPLOY_PATH / DEPLOY_SSH_KEY
+
+# ========== 流水线阶段 ==========
+stages:
+  - stage:
+      name: "collect-and-analyze"
+      displayName: "每日 AI 热点采集与分析"
+      tasks:
+        # ---------- Step 1: 环境准备 ----------
+        - task: shell
+          displayName: "安装 Python 依赖"
+          inputs:
+            script: |
+              set -e
+              echo "🐍 Python 版本: $(python3 --version)"
+              python3 -m pip install --upgrade pip --quiet
+              pip install requests openai --quiet
+              echo "✅ 依赖安装完成"
+
+        # ---------- Step 2: 采集 + LLM 分析 ----------
+        - task: shell
+          displayName: "执行 DailyAihotAgentRunner"
+          inputs:
+            script: |
+              set -e
+              export REDFOX_API_KEY="${REDFOX_API_KEY}"
+              export LLM_API_KEY="${LLM_API_KEY}"
+              export LLM_BASE_URL="${LLM_BASE_URL:-https://api.deepseek.com}"
+              export LLM_MODEL="${LLM_MODEL:-deepseek-chat}"
+
+              python3 -m src.run_daily_agent --date "$(date +%Y-%m-%d)"
+
+              # 验证输出
+              if [ ! -f dist/index.html ]; then
+                echo "❌ dist/index.html 未生成"
+                exit 1
+              fi
+
+              # 检查数据完整性
+              python3 -c "
+              import json
+              with open('dist/data/latest.json') as f:
+                  data = json.load(f)
+              platforms = data.get('platforms', {})
+              total = sum(p.get('sampleSize', 0) for p in platforms.values())
+              print(f'📊 总数据量: {total} 条')
+              zero = [n for n, p in platforms.items() if p.get('sampleSize', 0) == 0]
+              if zero:
+                  print(f'⚠️ 以下平台采集量为 0: {zero}')
+                  exit(1)
+              print('✅ 数据验证通过')
+              "
+              echo "✅ DailyAihotAgentRunner 执行完毕"
+
+        # ---------- Step 3: 部署到服务器 ----------
+        - task: shell
+          displayName: "部署到 Nginx 服务器"
+          inputs:
+            script: |
+              set -e
+              if [ -z "${DEPLOY_HOST}" ]; then
+                echo "⏭️ DEPLOY_HOST 未配置，跳过部署"
+                exit 0
+              fi
+
+              echo "🚀 部署到 ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}"
+
+              # 配置 SSH
+              mkdir -p ~/.ssh
+              echo "${DEPLOY_SSH_KEY}" > ~/.ssh/deploy_key
+              chmod 600 ~/.ssh/deploy_key
+              cat >> ~/.ssh/config << EOF
+              Host deploy_server
+                HostName ${DEPLOY_HOST}
+                User ${DEPLOY_USER}
+                IdentityFile ~/.ssh/deploy_key
+                StrictHostKeyChecking no
+              EOF
+
+              # 同步文件
+              rsync -avz --delete \
+                --exclude='.git' \
+                --exclude='__pycache__' \
+                dist/ deploy_server:${DEPLOY_PATH}/
+
+              echo "✅ 部署完成: ${DEPLOY_HOST}"
+
+              # 清理
+              rm -f ~/.ssh/deploy_key
+
+# ========== 构建通知 ==========
+notifications:
+  # 构建失败时通知 (可选，需配置飞书/钉钉 Webhook)
+  on_failure:
+    - webhook:
+        url: "${NOTIFY_WEBHOOK_URL}"

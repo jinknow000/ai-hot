@@ -92,10 +92,12 @@ python -m src.run_daily_agent
 open dist/index.html
 ```
 
-### 4. GitHub Actions 自动部署
+### 4. 自动化部署（二选一）
 
-1. Fork 本项目
-2. 在 Settings → Secrets 中配置:
+#### 选项 A: GitHub Actions
+
+1. Fork 本项目到 GitHub
+2. 在 Settings → Secrets and variables → Actions 中配置:
    - `REDFOX_API_KEY`
    - `LLM_API_KEY`
    - `LLM_BASE_URL`
@@ -106,6 +108,28 @@ open dist/index.html
    - `DEPLOY_SSH_KEY`
 3. 启用 GitHub Actions
 4. 每天 00:30 (北京时间) 自动构建和部署
+
+#### 选项 B: Gitee Pipelines（国内推荐）
+
+GitHub 访问不稳定时使用 Gitee，国内拉取速度快 3-5 倍：
+
+1. Fork/导入本项目到 [Gitee](https://gitee.com)
+2. 在仓库 → 管理 → 环境变量管理 中配置（同 GitHub Secrets）
+3. 项目已自带 `.gitee-ci.yml`，推送后自动生效
+4. 每天 00:30 (北京时间) 自动构建和部署
+
+> **注意**: Gitee Pages 需要手动点击"更新"刷新内容，因此不推荐用 Pages。**推荐部署到自有 Nginx 服务器**（走 SSH），实现全自动。
+
+**GitHub 与 Gitee 对比**:
+
+| 维度 | GitHub Actions | Gitee Pipelines |
+|------|:---:|:---:|
+| 国内访问速度 | 慢/不稳定 | 快 (国内节点) |
+| 定时任务 | ✅ cron | ✅ cron |
+| 密钥管理 | ✅ Secrets | ✅ 环境变量 |
+| 免费额度 | 2000 min/月 | 200-400 min/月 |
+| SSH 部署 | ✅ 现成 Action | ✅ Shell + rsync |
+| Pages 自动更新 | ✅ 自动 | ❌ 需手动 |
 
 ### 5. 服务器部署
 
