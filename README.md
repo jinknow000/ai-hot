@@ -78,7 +78,7 @@ cp .env.example .env
 
 可选:
 - `LLM_BASE_URL` — 默认 `https://api.deepseek.com`
-- `LLM_MODEL` — 默认 `deepseek-chat`
+- `LLM_MODEL` — 默认 `deepseek-v4-pro`
 
 ### 3. 本地运行
 

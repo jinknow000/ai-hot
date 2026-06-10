@@ -26,7 +26,7 @@ DailyAihotAgentRunner 主流程:
     REDFOX_API_KEY: 红狐数据 API Key (必须)
     LLM_API_KEY: LLM API Key (必须，除非 --collect-only)
     LLM_BASE_URL: LLM API 地址 (默认 https://api.deepseek.com)
-    LLM_MODEL: LLM 模型 (默认 deepseek-chat)
+    LLM_MODEL: LLM 模型 (默认 deepseek-v4-pro)
 """
 import os
 import sys
@@ -145,7 +145,7 @@ def main():
             analyzer = LlmAnalyzer(
                 api_key=llm_api_key,
                 base_url=os.getenv("LLM_BASE_URL", "https://api.deepseek.com"),
-                model=os.getenv("LLM_MODEL", "deepseek-chat"),
+                model=os.getenv("LLM_MODEL", "deepseek-v4-pro"),
             )
             try:
                 analysis_result = analyzer.analyze(collect_result, skill_contexts)

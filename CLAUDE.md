@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-AI 热点雷达 (AI Hot Radar) — daily automated aggregation of AI-related trending content from Douyin, Xiaohongshu, and WeChat platforms via RedFox Data API, with LLM structured analysis and opportunity scoring. Generates a static HTML site deployed via GitHub Actions.
+AI 热点雷达 (AI Hot Radar) — daily automated aggregation of AI-related trending content from Douyin (60s API), Xiaohongshu (暂无), and WeChat (RedFox API) platforms, with LLM structured analysis and opportunity scoring. Generates a static HTML site deployed via Cloudflare Pages.
+
+📖 **运维手册**: [OPERATIONS.md](./OPERATIONS.md) — 修改频率、切换部署、更换数据源等操作指南
 
 ## Commands
 
@@ -64,7 +66,7 @@ GitHub Actions (00:30 CST)
 - `REDFOX_API_KEY` — RedFox Data API key (required for real data; demo mode otherwise)
 - `LLM_API_KEY` — LLM API key (OpenAI-compatible; template fallback otherwise)
 - `LLM_BASE_URL` — Default `https://api.deepseek.com`
-- `LLM_MODEL` — Default `deepseek-chat`
+- `LLM_MODEL` — Default `deepseek-v4-pro`
 - `DEPLOY_HOST/USER/PATH/SSH_KEY` — GitHub Actions deployment targets
 
 ### CI/CD

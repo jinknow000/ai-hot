@@ -54,7 +54,7 @@ Gitee 仓库页 → 管理 → 环境变量管理 → 添加变量
 | `REDFOX_API_KEY` | `ak_31fa2c7b257c47fab7f84229da48f247` |
 | `LLM_API_KEY` | `sk-T-BGJJiZO338gkWaPVOywA` |
 | `LLM_BASE_URL` | `https://yx-api.yixiong-tech.com/openai/v1` |
-| `LLM_MODEL` | `deepseek-chat` |
+| `LLM_MODEL` | `deepseek-v4-pro` |
 | `GITEE_ACCESS_TOKEN` | `上一步复制的私人令牌` |
 | `GITEE_REPO` | `jinknow000/ai-hot` |
 
