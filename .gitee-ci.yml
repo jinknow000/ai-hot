@@ -9,7 +9,7 @@ name: "Daily AI Hot Radar"
 # 仅定时 + 手动，不监听 push（避免 CI 自己提交触发死循环）
 triggers:
   schedule:
-    - cron: "30 16 * * *"        # 北京时间 00:30
+    - cron: "30 3 * * *"         # 北京时间 11:30 (UTC+8 → 03:30 UTC)
   manual: enable
 
 # ========== 流水线阶段 ==========
@@ -64,9 +64,14 @@ stages:
                   data = json.load(f)
               ps = data.get('platforms', {})
               total = sum(p.get('sampleSize', 0) for p in ps.values())
-              print(f'📊 总数据: {total} 条')
+              print(f'总数据: {total} 条')
               for n, p in ps.items():
                   print(f'   {n}: {p.get(\"sampleSize\", 0)} 条')
+              wc = ps.get('wechat', {}).get('sampleSize', 0)
+              if wc == 0:
+                  print('公众号采集量为 0')
+                  exit(1)
+              print('数据验证通过')
               "
               echo "✅ 采集分析完成"
 

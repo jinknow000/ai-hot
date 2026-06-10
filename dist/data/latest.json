@@ -3,137 +3,239 @@
   "platforms": {
     "douyin": {
       "platform": "douyin",
-      "sampleSize": 5,
-      "items": [
-        {
-          "title": "AI 工具推荐 | 2026-06-10 最新 AI 应用合集",
-          "author": "AI科技观察",
-          "likeCount": 12500,
-          "commentCount": 890,
-          "shareCount": 3400,
-          "collectCount": 5600,
-          "commentHotWords": [
-            "好用",
-            "推荐",
-            "效率"
-          ],
-          "coverUrl": "",
-          "workUrl": "https://www.douyin.com/video/example1",
-          "_platform": "douyin",
-          "_baseScore": 68
-        },
-        {
-          "title": "DeepSeek vs GPT-5 实测对比，谁更强？",
-          "author": "码农实验室",
-          "likeCount": 8900,
-          "commentCount": 1200,
-          "shareCount": 2100,
-          "collectCount": 4300,
-          "commentHotWords": [
-            "DeepSeek",
-            "GPT",
-            "对比"
-          ],
-          "coverUrl": "",
-          "workUrl": "https://www.douyin.com/video/example2",
-          "_platform": "douyin",
-          "_baseScore": 68
-        }
-      ],
-      "errors": []
+      "sampleSize": 0,
+      "items": [],
+      "errors": [
+        "搜索 'AI工具' 失败: HTTP Error 404: ",
+        "搜索 'AI绘画' 失败: HTTP Error 404: ",
+        "搜索 'AI编程' 失败: HTTP Error 404: ",
+        "关键词搜索返回空结果"
+      ]
     },
     "xiaohongshu": {
       "platform": "xiaohongshu",
-      "sampleSize": 5,
-      "items": [
-        {
-          "title": "2026 年必备的 10 个 AI 编程工具",
-          "author": "程序员小鹿",
-          "likeCount": 6700,
-          "collectCount": 8900,
-          "commentCount": 450,
-          "shareCount": 1200,
-          "coverUrl": "",
-          "workUrl": "https://www.xiaohongshu.com/note/example1",
-          "_platform": "xiaohongshu",
-          "_baseScore": 68
-        }
-      ],
-      "errors": []
+      "sampleSize": 0,
+      "items": [],
+      "errors": [
+        "搜索 'AI工具' 失败: HTTP Error 404: ",
+        "搜索 'AI编程' 失败: HTTP Error 404: ",
+        "搜索 'AI智能体' 失败: HTTP Error 404: ",
+        "搜索 'Agent' 失败: HTTP Error 404: ",
+        "搜索 '大模型' 失败: HTTP Error 404: ",
+        "未找到近 7 天热门笔记"
+      ]
     },
     "wechat": {
       "platform": "wechat",
       "sampleSize": 5,
       "items": [
         {
-          "title": "ChatGPT 与 Codex：AI 编程工具的终极对决",
-          "author": "新智元",
+          "accountType": "时事新闻",
+          "author": "金融时报",
+          "collectCount": 161,
+          "commentCount": 100,
+          "content": null,
+          "coverUrl": null,
+          "isOriginal": 0,
+          "likeCount": 443,
+          "memo": null,
+          "orderNum": null,
+          "originalAuthor": null,
+          "publishLocation": null,
+          "publishTime": "2026-04-03 17:21:22",
           "readCount": 100001,
-          "likeCount": 1200,
-          "wowCount": 340,
-          "commentCount": 89,
-          "shareCount": 5600,
-          "publishTime": "2026-06-10T08:00:00",
-          "workUrl": "https://mp.weixin.qq.com/s/example1",
+          "rewardCount": 0,
+          "shareCount": 1138,
+          "sourceUrl": null,
+          "summary": null,
+          "syncTime": "2026-04-04 00:36:00",
+          "title": "🙋🏻行长\n最近行里都在传AI要取代我们基层员工了\n我有点…",
+          "watchCount": 116,
+          "workUrl": "https://mp.weixin.qq.com/s?__biz=MzI5MjE1ODM5Mw==&mid=2650419705&idx=1&sn=b349df15766560fdb73ce0befdb6fccd#rd",
+          "workUuid": "086184A2C2916501CF2F9E6B4CE27128",
+          "_platform": "wechat",
+          "_baseScore": 68
+        },
+        {
+          "accountType": "时事新闻",
+          "author": "南方都市报",
+          "collectCount": 266,
+          "commentCount": 17,
+          "content": null,
+          "coverUrl": null,
+          "isOriginal": 0,
+          "likeCount": 964,
+          "memo": null,
+          "orderNum": null,
+          "originalAuthor": null,
+          "publishLocation": null,
+          "publishTime": "2026-04-03 20:57:44",
+          "readCount": 100001,
+          "rewardCount": 0,
+          "shareCount": 14737,
+          "sourceUrl": null,
+          "summary": null,
+          "syncTime": "2026-04-04 00:32:34",
+          "title": "工信部紧急提醒苹果用户",
+          "watchCount": 148,
+          "workUrl": "https://mp.weixin.qq.com/s?__biz=MTk1MjIwODAwMQ==&mid=2651897890&idx=1&sn=e61889b3b72a22b22972e80fb7070934#rd",
+          "workUuid": "017896825BB05F136D6C51E262E2369D",
+          "_platform": "wechat",
+          "_baseScore": 68
+        },
+        {
+          "accountType": "时事新闻",
+          "author": "四川日报",
+          "collectCount": 24,
+          "commentCount": 20,
+          "content": null,
+          "coverUrl": null,
+          "isOriginal": 0,
+          "likeCount": 566,
+          "memo": null,
+          "orderNum": null,
+          "originalAuthor": null,
+          "publishLocation": null,
+          "publishTime": "2026-04-08 11:39:24",
+          "readCount": 100001,
+          "rewardCount": 0,
+          "shareCount": 759,
+          "sourceUrl": null,
+          "summary": null,
+          "syncTime": "2026-04-09 00:30:27",
+          "title": "伊朗：感谢中俄",
+          "watchCount": 140,
+          "workUrl": "https://mp.weixin.qq.com/s?__biz=MjM5MTk1MjY2MQ==&mid=2652281548&idx=1&sn=028606eb185883e974bb20f491a65420#rd",
+          "workUuid": "06D4B94370C9FFB3A1F33D9213BBA4A1",
+          "_platform": "wechat",
+          "_baseScore": 68
+        },
+        {
+          "accountType": "汽车交通",
+          "author": "高德",
+          "collectCount": 59,
+          "commentCount": 7,
+          "content": null,
+          "coverUrl": null,
+          "isOriginal": 0,
+          "likeCount": 688,
+          "memo": null,
+          "orderNum": null,
+          "originalAuthor": null,
+          "publishLocation": null,
+          "publishTime": "2026-04-23 16:53:41",
+          "readCount": 100001,
+          "rewardCount": 0,
+          "shareCount": 869,
+          "sourceUrl": null,
+          "summary": null,
+          "syncTime": "2026-04-24 01:21:29",
+          "title": "车载导航更聪明了！高德汽车出行 AI Agent 发布，复杂出行一说都懂",
+          "watchCount": 246,
+          "workUrl": "https://mp.weixin.qq.com/s?__biz=MzA4NTQ4NzM1NQ==&mid=2651749173&idx=1&sn=a8b6282ad881af1179b6dc83b3ea3e8a#rd",
+          "workUuid": "02AFF30873217CC765269C74602EE8F7",
+          "_platform": "wechat",
+          "_baseScore": 68
+        },
+        {
+          "accountType": "时事新闻",
+          "author": "中国新闻网",
+          "collectCount": 81,
+          "commentCount": 13,
+          "content": null,
+          "coverUrl": null,
+          "isOriginal": 0,
+          "likeCount": 1309,
+          "memo": null,
+          "orderNum": null,
+          "originalAuthor": null,
+          "publishLocation": null,
+          "publishTime": "2026-04-03 14:33:20",
+          "readCount": 100001,
+          "rewardCount": 0,
+          "shareCount": 3606,
+          "sourceUrl": null,
+          "summary": null,
+          "syncTime": "2026-04-03 14:37:49",
+          "title": "金正恩与女儿视察宠物商店等，现场与猫狗互动",
+          "watchCount": 283,
+          "workUrl": "https://mp.weixin.qq.com/s?__biz=MjM5ODA4OTIyMA==&mid=2652837697&idx=1&sn=1dae29a3cc3e02b1899b7da204c3025b#rd",
+          "workUuid": "02C349EBB0B1F657239F08BB0F257B8E",
           "_platform": "wechat",
           "_baseScore": 68
         }
       ],
-      "errors": []
+      "errors": [
+        "获取文章详情失败: https://mp.weixin.qq.com/s?__biz=MzI5MjE1ODM5Mw==&...",
+        "获取文章详情失败: https://mp.weixin.qq.com/s?__biz=MTk1MjIwODAwMQ==&...",
+        "获取文章详情失败: https://mp.weixin.qq.com/s?__biz=MjM5MTk1MjY2MQ==&...",
+        "获取文章详情失败: https://mp.weixin.qq.com/s?__biz=MzA4NTQ4NzM1NQ==&...",
+        "获取文章详情失败: https://mp.weixin.qq.com/s?__biz=MjM5ODA4OTIyMA==&..."
+      ]
     }
   },
   "analysis": {
     "dailySummary": {
-      "totalCollected": 15,
+      "totalCollected": 5,
       "hotTopics": [
-        "AI 工具推荐 | 2026-06-10",
-        "DeepSeek vs GPT-5 实测",
-        "2026 年必备的 10 个 AI 编程",
-        "ChatGPT 与 Codex：AI 编"
+        "🙋🏻行长\n最近行里都在传AI要取代我们基",
+        "工信部紧急提醒苹果用户",
+        "伊朗：感谢中俄",
+        "车载导航更聪明了！高德汽车出行 AI A",
+        "金正恩与女儿视察宠物商店等，现场与猫狗互"
       ],
-      "overview": "2026-06-10 共采集 15 条 AI 相关数据。(LLM 分析暂不可用: 未配置 LLM_API_KEY，使用模板生成)"
+      "overview": "2026-06-10 共采集 5 条 AI 相关数据。(LLM 分析暂不可用: Error code: 403 - {'error': {'message': \"key not allowed to access model. This key can only access models=['deepseek-v4-pro', 'deepseek-v4-flash', 'claude-ds-v4-pro', 'claude-ds-v4-flash', 'qwen3.7-max', 'qwen3.6-plus', 'qwen3.6-flash', 'claude-qwen37-max', 'claude-qwen36-plus', 'claude-qwen36-flash', 'qwen3.5-27b', 'qwen2.5-32b', 'qwen3.6-35b']. Tried to access deepseek-chat\", 'type': 'key_model_access_denied', 'param': 'model', 'code': '403'}})"
     },
     "topPicks": [
       {
-        "title": "AI 工具推荐 | 2026-06-10 最新 AI 应用合集",
-        "platform": "douyin",
-        "opportunityScore": 68,
-        "reason": "基于互动数据自动推荐",
-        "contentAngle": "可结合自身领域做深度解读",
-        "riskNote": "请人工核实内容质量",
-        "url": "https://www.douyin.com/video/example1"
-      },
-      {
-        "title": "DeepSeek vs GPT-5 实测对比，谁更强？",
-        "platform": "douyin",
-        "opportunityScore": 68,
-        "reason": "基于互动数据自动推荐",
-        "contentAngle": "可结合自身领域做深度解读",
-        "riskNote": "请人工核实内容质量",
-        "url": "https://www.douyin.com/video/example2"
-      },
-      {
-        "title": "2026 年必备的 10 个 AI 编程工具",
-        "platform": "xiaohongshu",
-        "opportunityScore": 68,
-        "reason": "基于互动数据自动推荐",
-        "contentAngle": "可结合自身领域做深度解读",
-        "riskNote": "请人工核实内容质量",
-        "url": "https://www.xiaohongshu.com/note/example1"
-      },
-      {
-        "title": "ChatGPT 与 Codex：AI 编程工具的终极对决",
+        "title": "🙋🏻行长\n最近行里都在传AI要取代我们基层员工了\n我有点…",
         "platform": "wechat",
         "opportunityScore": 68,
         "reason": "基于互动数据自动推荐",
         "contentAngle": "可结合自身领域做深度解读",
         "riskNote": "请人工核实内容质量",
-        "url": "https://mp.weixin.qq.com/s/example1"
+        "url": "https://mp.weixin.qq.com/s?__biz=MzI5MjE1ODM5Mw==&mid=2650419705&idx=1&sn=b349df15766560fdb73ce0befdb6fccd#rd"
+      },
+      {
+        "title": "工信部紧急提醒苹果用户",
+        "platform": "wechat",
+        "opportunityScore": 68,
+        "reason": "基于互动数据自动推荐",
+        "contentAngle": "可结合自身领域做深度解读",
+        "riskNote": "请人工核实内容质量",
+        "url": "https://mp.weixin.qq.com/s?__biz=MTk1MjIwODAwMQ==&mid=2651897890&idx=1&sn=e61889b3b72a22b22972e80fb7070934#rd"
+      },
+      {
+        "title": "伊朗：感谢中俄",
+        "platform": "wechat",
+        "opportunityScore": 68,
+        "reason": "基于互动数据自动推荐",
+        "contentAngle": "可结合自身领域做深度解读",
+        "riskNote": "请人工核实内容质量",
+        "url": "https://mp.weixin.qq.com/s?__biz=MjM5MTk1MjY2MQ==&mid=2652281548&idx=1&sn=028606eb185883e974bb20f491a65420#rd"
+      },
+      {
+        "title": "车载导航更聪明了！高德汽车出行 AI Agent 发布，复杂出行一说都懂",
+        "platform": "wechat",
+        "opportunityScore": 68,
+        "reason": "基于互动数据自动推荐",
+        "contentAngle": "可结合自身领域做深度解读",
+        "riskNote": "请人工核实内容质量",
+        "url": "https://mp.weixin.qq.com/s?__biz=MzA4NTQ4NzM1NQ==&mid=2651749173&idx=1&sn=a8b6282ad881af1179b6dc83b3ea3e8a#rd"
+      },
+      {
+        "title": "金正恩与女儿视察宠物商店等，现场与猫狗互动",
+        "platform": "wechat",
+        "opportunityScore": 68,
+        "reason": "基于互动数据自动推荐",
+        "contentAngle": "可结合自身领域做深度解读",
+        "riskNote": "请人工核实内容质量",
+        "url": "https://mp.weixin.qq.com/s?__biz=MjM5ODA4OTIyMA==&mid=2652837697&idx=1&sn=1dae29a3cc3e02b1899b7da204c3025b#rd"
       }
     ],
     "platformInsights": {
-      "douyin": "今日采集 5 条数据",
-      "xiaohongshu": "今日采集 5 条数据",
+      "douyin": "今日采集 0 条数据",
+      "xiaohongshu": "今日采集 0 条数据",
       "wechat": "今日采集 5 条数据"
     },
     "contentAngles": [
@@ -142,32 +244,32 @@
       "AI 编程效率提升实践"
     ],
     "riskNotes": [
-      "LLM 分析引擎异常: 未配置 LLM_API_KEY，使用模板生成，当前为模板生成结果",
+      "LLM 分析引擎异常: Error code: 403 - {'error': {'message': \"key not allowed to access model. This key can only access models=['deepseek-v4-pro', 'deepseek-v4-flash', 'claude-ds-v4-pro', 'claude-ds-v4-flash', 'qwen3.7-max', 'qwen3.6-plus', 'qwen3.6-flash', 'claude-qwen37-max', 'claude-qwen36-plus', 'claude-qwen36-flash', 'qwen3.5-27b', 'qwen2.5-32b', 'qwen3.6-35b']. Tried to access deepseek-chat\", 'type': 'key_model_access_denied', 'param': 'model', 'code': '403'}}，当前为模板生成结果",
       "建议人工审核推荐内容的相关性和时效性"
     ]
   },
   "collectStats": {
-    "startTime": "2026-06-10T00:30:00",
-    "endTime": "2026-06-10T00:30:05",
+    "startTime": "2026-06-10T10:37:05.268861",
     "platformStats": {
       "douyin": {
-        "sampleSize": 5,
-        "errorCount": 0
+        "sampleSize": 0,
+        "errorCount": 4
       },
       "xiaohongshu": {
-        "sampleSize": 5,
-        "errorCount": 0
+        "sampleSize": 0,
+        "errorCount": 6
       },
       "wechat": {
         "sampleSize": 5,
-        "errorCount": 0
+        "errorCount": 5
       }
     },
-    "totalItems": 15
+    "endTime": "2026-06-10T10:37:11.304489",
+    "totalItems": 5
   },
   "meta": {
     "skillsLoaded": 4,
-    "buildTime": "2026-06-10T08:42:50.592235",
+    "buildTime": "2026-06-10T10:37:12.577142",
     "version": "1.0.0"
   }
 }

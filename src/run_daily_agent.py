@@ -194,14 +194,16 @@ def main():
     index_path = builder.build(site_data, date)
     print(f"  ✅ 站点已生成: {index_path}")
 
-    # 检查各平台数据量 (任一平台 0 条视为失败)
-    zero_platforms = [
-        pname for pname, pdata in site_data["platforms"].items()
-        if pdata.get("sampleSize", 0) == 0
-    ]
-    if zero_platforms:
-        print(f"  ⚠️ 以下平台采集量为 0: {', '.join(zero_platforms)}")
-        print("  标记为部分失败 (GitHub Actions 会视为 failure)")
+    # 检查数据量 (仅公众号有搜索 API，抖音/小红书当前不支持搜索)
+    wechat_data = site_data["platforms"].get("wechat", {})
+    if wechat_data.get("sampleSize", 0) == 0:
+        print(f"  ❌ 公众号采集量为 0，标记失败")
+        sys.exit(1)
+
+    for pname in ["douyin", "xiaohongshu"]:
+        pdata = site_data["platforms"].get(pname, {})
+        if pdata.get("sampleSize", 0) == 0:
+            print(f"  ⚠️ {pname} 采集量为 0（RedFox API 暂不支持该平台搜索）")
 
     print(f"\n{'='*60}")
     print(f"  ✅ DailyAihotAgentRunner 执行完毕")

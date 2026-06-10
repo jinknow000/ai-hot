@@ -28,24 +28,28 @@ class RedFoxCollector:
     """红狐数据多平台采集器"""
 
     # 三平台采集配置
+    # 注意: RedFox API 目前仅公众号支持搜索，抖音和小红书仅支持按 ID 查询
     PLATFORM_CONFIG = {
         "douyin": {
             "skill": "douyin-search",
             "api_prefix": "dyData",
             "keywords": ["AI"],
             "count": 5,
+            "search_available": False,  # API 不支持搜索，仅 queryWork
         },
         "xiaohongshu": {
             "skill": "xiaohongshu-weeklytop",
             "api_prefix": "xhsData",
             "keywords": ["AI工具", "AI编程", "AI智能体", "Agent", "大模型"],
             "count": 5,
+            "search_available": False,  # API 不支持搜索
         },
         "wechat": {
             "skill": "wechat-10w-hot",
             "api_prefix": "gzhData",
             "keywords": ["AI工具", "AI编程", "AI智能体", "Agent", "大模型"],
             "count": 5,
+            "search_available": True,   # searchArticle 可用
         },
     }
 
@@ -224,90 +228,25 @@ class RedFoxCollector:
         }
 
     def _collect_douyin_fallback(self, config: dict, errors: list) -> dict:
-        """抖音采集降级方案"""
-        items = []
-        kw = config.get("keywords", ["AI"])[0]
-
-        result = self._api_post("dyData/search", {
-            "keyword": kw,
-            "offset": 0,
-            "count": 10,
-        })
-
-        if result.get("code") == 2000:
-            works = result.get("data", {}).get("list", [])
-            for w in works[:5]:
-                items.append({
-                    "title": w.get("title", ""),
-                    "author": w.get("author", ""),
-                    "likeCount": w.get("likeCount", 0),
-                    "commentCount": w.get("commentCount", 0),
-                    "shareCount": w.get("shareCount", 0),
-                    "collectCount": w.get("collectCount", 0),
-                    "commentHotWords": w.get("commentHotWords", []),
-                    "coverUrl": w.get("coverUrl", ""),
-                    "workUrl": w.get("workUrl", ""),
-                })
-        else:
-            errors.append(f"抖音降级搜索失败: {result.get('msg')}")
-
+        """抖音采集降级方案 - RedFox 抖音 API 仅支持按 ID 查询，不支持搜索"""
+        # 当前 RedFox API 的 dyData 仅支持 queryWork(按作品ID查询)，
+        # 不提供关键词搜索。如有抖音作品 ID 列表，可在此补全。
         return {
             "platform": "douyin",
-            "sampleSize": len(items),
-            "items": items,
-            "errors": errors,
+            "sampleSize": 0,
+            "items": [],
+            "errors": errors + ["抖音搜索 API 暂不可用（RedFox dyData 仅支持按 ID 查询，不支持关键词搜索）"],
         }
 
     def _collect_xhs_fallback(self, config: dict, errors: list) -> dict:
-        """小红书采集降级方案"""
-        items = []
-        keywords = config.get("keywords", ["AI工具"])
-
-        for kw in keywords[:3]:
-            result = self._api_post("xhsData/searchNote", {
-                "keyword": kw,
-                "sortType": "hot",
-                "count": 10,
-            })
-            if result.get("code") == 2000:
-                notes = result.get("data", {}).get("list", [])
-                for n in notes:
-                    items.append({
-                        "title": n.get("title", ""),
-                        "author": n.get("author", ""),
-                        "likeCount": n.get("likeCount", 0),
-                        "collectCount": n.get("collectCount", 0),
-                        "commentCount": n.get("commentCount", 0),
-                        "shareCount": n.get("shareCount", 0),
-                        "coverUrl": n.get("coverUrl", ""),
-                        "workUrl": n.get("workUrl", ""),
-                    })
-            else:
-                errors.append(f"小红书降级搜索 '{kw}' 失败: {result.get('msg')}")
-            time.sleep(random.uniform(REQUEST_DELAY_MIN, REQUEST_DELAY_MAX))
-
-        # 去重
-        seen = set()
-        unique_items = []
-        for item in items:
-            url = item.get("workUrl", "")
-            if url and url not in seen:
-                seen.add(url)
-                unique_items.append(item)
-
-        # 按互动量排序
-        def _score(i):
-            return (i.get("likeCount", 0) or 0) * 0.35 + \
-                   (i.get("collectCount", 0) or 0) * 0.35 + \
-                   (i.get("commentCount", 0) or 0) * 0.2 + \
-                   (i.get("shareCount", 0) or 0) * 0.1
-        unique_items.sort(key=_score, reverse=True)
-
+        """小红书采集降级方案 - RedFox 小红书 API 仅支持按 ID 查询"""
+        # 当前 RedFox API 的 xhsData 仅支持 queryAccount/queryWork，
+        # 不提供关键词搜索。
         return {
             "platform": "xiaohongshu",
-            "sampleSize": min(len(unique_items), 5),
-            "items": unique_items[:5],
-            "errors": errors,
+            "sampleSize": 0,
+            "items": [],
+            "errors": errors + ["小红书搜索 API 暂不可用（RedFox xhsData 仅支持按 ID 查询，不支持关键词搜索）"],
         }
 
     def _api_post(self, endpoint: str, body: dict) -> dict:
