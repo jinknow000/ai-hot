@@ -57,16 +57,17 @@ ai-hot/
 
 ## 快速开始
 
-### 1. 克隆项目
+### 🚀 在线部署（推荐，5 分钟）
+
+→ 详见 **[DEPLOY.md](DEPLOY.md)** 完整部署指南
+
+无需服务器，无需域名。Gitee Pipelines + Gitee Pages，完全免费，全自动运行。
+
+### 💻 本地运行
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/ai-hot.git
+git clone https://gitee.com/YOUR_USERNAME/ai-hot.git
 cd ai-hot
-```
-
-### 2. 配置环境变量
-
-```bash
 cp .env.example .env
 # 编辑 .env 填入你的 API Key
 ```
@@ -92,44 +93,21 @@ python -m src.run_daily_agent
 open dist/index.html
 ```
 
-### 4. 自动化部署（二选一）
+### 4. 一键部署到 Gitee Pages（免费，无需服务器）
 
-#### 选项 A: GitHub Actions
+**5 分钟上线，零成本**。详见 [DEPLOY.md](DEPLOY.md)。
 
-1. Fork 本项目到 GitHub
-2. 在 Settings → Secrets and variables → Actions 中配置:
-   - `REDFOX_API_KEY`
-   - `LLM_API_KEY`
-   - `LLM_BASE_URL`
-   - `LLM_MODEL`
-   - `DEPLOY_HOST`
-   - `DEPLOY_USER`
-   - `DEPLOY_PATH`
-   - `DEPLOY_SSH_KEY`
-3. 启用 GitHub Actions
-4. 每天 00:30 (北京时间) 自动构建和部署
+1. 推送代码到 [Gitee](https://gitee.com)
+2. 配置 6 个环境变量（API Key + Gitee 令牌）
+3. 开启 Gitee Pages，部署分支选 `pages`
+4. 运行流水线 → 访问 `https://你的用户名.gitee.io/ai-hot`
 
-#### 选项 B: Gitee Pipelines（国内推荐）
+每天凌晨 00:30 全自动：采集 → LLM 分析 → 生成页面 → Gitee Pages 自动部署。
 
-GitHub 访问不稳定时使用 Gitee，国内拉取速度快 3-5 倍：
+#### 其他部署方式
 
-1. Fork/导入本项目到 [Gitee](https://gitee.com)
-2. 在仓库 → 管理 → 环境变量管理 中配置（同 GitHub Secrets）
-3. 项目已自带 `.gitee-ci.yml`，推送后自动生效
-4. 每天 00:30 (北京时间) 自动构建和部署
-
-> **注意**: Gitee Pages 需要手动点击"更新"刷新内容，因此不推荐用 Pages。**推荐部署到自有 Nginx 服务器**（走 SSH），实现全自动。
-
-**GitHub 与 Gitee 对比**:
-
-| 维度 | GitHub Actions | Gitee Pipelines |
-|------|:---:|:---:|
-| 国内访问速度 | 慢/不稳定 | 快 (国内节点) |
-| 定时任务 | ✅ cron | ✅ cron |
-| 密钥管理 | ✅ Secrets | ✅ 环境变量 |
-| 免费额度 | 2000 min/月 | 200-400 min/月 |
-| SSH 部署 | ✅ 现成 Action | ✅ Shell + rsync |
-| Pages 自动更新 | ✅ 自动 | ❌ 需手动 |
+- **GitHub Pages**: 使用 `.github/workflows/daily-aihot.yml`，GitHub Actions 定时构建 + Pages 托管
+- **自有服务器**: 使用 `scripts/server-setup.sh` 一键安装 Nginx + SSH 自动部署
 
 ### 5. 服务器部署
 
