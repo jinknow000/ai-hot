@@ -1,0 +1,330 @@
+{
+  "date": "2026-06-09",
+  "platforms": {
+    "douyin": {
+      "platform": "douyin",
+      "sampleSize": 5,
+      "items": [
+        {
+          "title": "2026 最全 AI 工具大盘点！这 20 个神器让你效率翻倍",
+          "author": "AI科技观察",
+          "likeCount": 12800,
+          "commentCount": 920,
+          "shareCount": 3500,
+          "collectCount": 5800,
+          "commentHotWords": [
+            "收藏",
+            "干货",
+            "效率",
+            "推荐"
+          ],
+          "coverUrl": "",
+          "workUrl": "https://www.douyin.com/video/ai-tools-2026"
+        },
+        {
+          "title": "DeepSeek v4 发布！实测编程能力碾压 GPT-5",
+          "author": "码农实验室",
+          "likeCount": 9200,
+          "commentCount": 1350,
+          "shareCount": 2800,
+          "collectCount": 4100,
+          "commentHotWords": [
+            "DeepSeek",
+            "编程",
+            "对比",
+            "GPT"
+          ],
+          "coverUrl": "",
+          "workUrl": "https://www.douyin.com/video/deepseek-v4"
+        },
+        {
+          "title": "用 AI 画图月入 3 万，普通人也能做的副业",
+          "author": "副业研究所",
+          "likeCount": 15600,
+          "commentCount": 2100,
+          "shareCount": 4800,
+          "collectCount": 9200,
+          "commentHotWords": [
+            "副业",
+            "赚钱",
+            "教程",
+            "AI绘画"
+          ],
+          "coverUrl": "",
+          "workUrl": "https://www.douyin.com/video/ai-side-hustle"
+        },
+        {
+          "title": "Claude Code 实测：AI 写代码到底靠不靠谱？",
+          "author": "极客湾",
+          "likeCount": 7800,
+          "commentCount": 860,
+          "shareCount": 1900,
+          "collectCount": 3200,
+          "commentHotWords": [
+            "Claude",
+            "编程",
+            "好用",
+            "效率"
+          ],
+          "coverUrl": "",
+          "workUrl": "https://www.douyin.com/video/claude-code-review"
+        },
+        {
+          "title": "AI 生成的短视频已经可以以假乱真了...",
+          "author": "赛博朋克观察",
+          "likeCount": 11200,
+          "commentCount": 1680,
+          "shareCount": 5600,
+          "collectCount": 3400,
+          "commentHotWords": [
+            "震惊",
+            "AI",
+            "未来",
+            "真假"
+          ],
+          "coverUrl": "",
+          "workUrl": "https://www.douyin.com/video/ai-video-realistic"
+        }
+      ],
+      "errors": []
+    },
+    "xiaohongshu": {
+      "platform": "xiaohongshu",
+      "sampleSize": 5,
+      "items": [
+        {
+          "title": "2026 年程序员必备的 10 个 AI 编程工具｜效率提升 10 倍",
+          "author": "程序员小鹿",
+          "likeCount": 7200,
+          "collectCount": 9800,
+          "commentCount": 480,
+          "shareCount": 1500,
+          "coverUrl": "",
+          "workUrl": "https://www.xiaohongshu.com/note/ai-coding-tools"
+        },
+        {
+          "title": "AI 智能体入门到实战｜手把手教你搭建第一个 Agent",
+          "author": "AI 学习笔记",
+          "likeCount": 5600,
+          "collectCount": 11200,
+          "commentCount": 620,
+          "shareCount": 1800,
+          "coverUrl": "",
+          "workUrl": "https://www.xiaohongshu.com/note/ai-agent-tutorial"
+        },
+        {
+          "title": "打工人必备 AI 工具清单｜每天省 3 小时",
+          "author": "效率工具控",
+          "likeCount": 8900,
+          "collectCount": 13500,
+          "commentCount": 780,
+          "shareCount": 2600,
+          "coverUrl": "",
+          "workUrl": "https://www.xiaohongshu.com/note/ai-tools-list"
+        },
+        {
+          "title": "用 AI 写周报、做 PPT、画原型｜产品经理效率革命",
+          "author": "PM 成长日记",
+          "likeCount": 4500,
+          "collectCount": 7200,
+          "commentCount": 350,
+          "shareCount": 980,
+          "coverUrl": "",
+          "workUrl": "https://www.xiaohongshu.com/note/ai-pm-tools"
+        },
+        {
+          "title": "对比了 5 个 AI 搜索引擎，这个最好用！",
+          "author": "科技小白进阶",
+          "likeCount": 6200,
+          "collectCount": 8500,
+          "commentCount": 520,
+          "shareCount": 1200,
+          "coverUrl": "",
+          "workUrl": "https://www.xiaohongshu.com/note/ai-search-compare"
+        }
+      ],
+      "errors": []
+    },
+    "wechat": {
+      "platform": "wechat",
+      "sampleSize": 5,
+      "items": [
+        {
+          "title": "ChatGPT 与 Codex：AI 编程工具的终极对决（2026 版）",
+          "author": "新智元",
+          "readCount": 100001,
+          "likeCount": 1280,
+          "wowCount": 356,
+          "commentCount": 92,
+          "shareCount": 5800,
+          "publishTime": "2026-06-09T08:00:00",
+          "workUrl": "https://mp.weixin.qq.com/s/chatgpt-codex-2026"
+        },
+        {
+          "title": "深度解析 DeepSeek v4：国产大模型的逆袭之路",
+          "author": "机器之心",
+          "readCount": 100001,
+          "likeCount": 980,
+          "wowCount": 280,
+          "commentCount": 65,
+          "shareCount": 4200,
+          "publishTime": "2026-06-09T07:30:00",
+          "workUrl": "https://mp.weixin.qq.com/s/deepseek-v4-analysis"
+        },
+        {
+          "title": "AI Agent 时代来临：2026 年智能体应用全景图",
+          "author": "量子位",
+          "readCount": 100001,
+          "likeCount": 756,
+          "wowCount": 198,
+          "commentCount": 43,
+          "shareCount": 3100,
+          "publishTime": "2026-06-08T20:00:00",
+          "workUrl": "https://mp.weixin.qq.com/s/ai-agent-landscape"
+        },
+        {
+          "title": "从零搭建 AI 热点雷达：2 小时搞定全栈项目",
+          "author": "二哥的编程笔记",
+          "readCount": 100001,
+          "likeCount": 1860,
+          "wowCount": 520,
+          "commentCount": 128,
+          "shareCount": 6900,
+          "publishTime": "2026-06-08T18:00:00",
+          "workUrl": "https://mp.weixin.qq.com/s/ai-hot-radar-build"
+        },
+        {
+          "title": "大模型价格战再起：GPT-5、Claude 4、DeepSeek v4 性价比横评",
+          "author": "InfoQ",
+          "readCount": 100001,
+          "likeCount": 620,
+          "wowCount": 145,
+          "commentCount": 38,
+          "shareCount": 2600,
+          "publishTime": "2026-06-08T16:00:00",
+          "workUrl": "https://mp.weixin.qq.com/s/llm-price-war-2026"
+        }
+      ],
+      "errors": []
+    }
+  },
+  "analysis": {
+    "dailySummary": {
+      "totalCollected": 15,
+      "hotTopics": [
+        "DeepSeek v4",
+        "AI 编程工具",
+        "AI Agent",
+        "AI 绘画副业",
+        "大模型价格战"
+      ],
+      "overview": "2026 年 6 月 9 日共采集 15 条 AI 相关热点数据。DeepSeek v4 发布成为今日最热话题，三平台均有大量讨论。AI 编程工具和 Agent 相关内容持续高热，AI 副业变现类内容在小红书和抖音表现突出。公众号端深度分析文章阅读量均超 10w+。"
+    },
+    "topPicks": [
+      {
+        "title": "从零搭建 AI 热点雷达：2 小时搞定全栈项目",
+        "platform": "wechat",
+        "opportunityScore": 88,
+        "reason": "实战教程类内容互动率极高，兼具技术深度和可复现性",
+        "contentAngle": "拆解项目架构与实现细节，结合 AI 工具给出可复现操作指南",
+        "riskNote": "需确认 API 和工具的版本时效性",
+        "url": "https://mp.weixin.qq.com/s/ai-hot-radar-build"
+      },
+      {
+        "title": "DeepSeek v4 发布！实测编程能力碾压 GPT-5",
+        "platform": "douyin",
+        "opportunityScore": 85,
+        "reason": "热点事件 + 实测对比，天然的话题性和传播力",
+        "contentAngle": "对比评测角度切入，加入实际编码场景的 A/B 测试",
+        "riskNote": "需注意数据准确性，避免片面对比引发争议",
+        "url": "https://www.douyin.com/video/deepseek-v4"
+      },
+      {
+        "title": "2026 年程序员必备的 10 个 AI 编程工具｜效率提升 10 倍",
+        "platform": "xiaohongshu",
+        "opportunityScore": 82,
+        "reason": "实用工具推荐类内容收藏率高，长尾流量价值大",
+        "contentAngle": "按场景分类推荐（编码/调试/部署），加入个人使用体验",
+        "riskNote": "工具列表需定期更新，避免推荐已失效产品",
+        "url": "https://www.xiaohongshu.com/note/ai-coding-tools"
+      },
+      {
+        "title": "深度解析 DeepSeek v4：国产大模型的逆袭之路",
+        "platform": "wechat",
+        "opportunityScore": 80,
+        "reason": "深度技术分析，面向专业读者群体",
+        "contentAngle": "从技术架构、性能指标、开源生态三个维度展开",
+        "riskNote": "技术细节需交叉验证，避免引用未公开信息",
+        "url": "https://mp.weixin.qq.com/s/deepseek-v4-analysis"
+      },
+      {
+        "title": "AI Agent 时代来临：2026 年智能体应用全景图",
+        "platform": "wechat",
+        "opportunityScore": 78,
+        "reason": "行业趋势类文章，适合作为知识付费内容素材",
+        "contentAngle": "梳理 Agent 技术栈和典型应用场景，制作信息图",
+        "riskNote": "Agent 领域变化快，需标注信息截止时间",
+        "url": "https://mp.weixin.qq.com/s/ai-agent-landscape"
+      },
+      {
+        "title": "用 AI 画图月入 3 万，普通人也能做的副业",
+        "platform": "douyin",
+        "opportunityScore": 76,
+        "reason": "副业变现话题自带高传播属性，评论区互动活跃",
+        "contentAngle": "提供可操作的入门路径和收入预期，避免过度承诺",
+        "riskNote": "需平衡吸引力与真实性，避免被标记为标题党",
+        "url": "https://www.douyin.com/video/ai-side-hustle"
+      },
+      {
+        "title": "打工人必备 AI 工具清单｜每天省 3 小时",
+        "platform": "xiaohongshu",
+        "opportunityScore": 75,
+        "reason": "职场效率类内容在小红书受众广泛，收藏数极高",
+        "contentAngle": "按工作场景（会议/文档/邮件/数据分析）分类推荐",
+        "riskNote": "需实际测试工具效果，避免纸上谈兵",
+        "url": "https://www.xiaohongshu.com/note/ai-tools-list"
+      }
+    ],
+    "platformInsights": {
+      "douyin": "AI 内容在抖音以实操演示和对比评测为主，视频形式天然适合工具展示和效果对比。副业变现类话题互动率最高，建议内容创作者重点布局 AI + 副业方向。",
+      "xiaohongshu": "小红书 AI 内容以图文教程和工具清单为主，收藏率远超其他平台。编程工具和效率工具是两大热门子类，笔记长尾流量显著。",
+      "wechat": "公众号 AI 深度分析文章阅读量稳定在 10w+，读者对技术趋势和行业分析有持续需求。大模型对比和 AI 编程工具是当前两大流量密码。"
+    },
+    "contentAngles": [
+      "AI 工具实测对比：多款同类工具横向评测，提供选购建议",
+      "AI 副业实操：从零到一的变现路径，附带真实收益截图",
+      "大模型技术解读：用通俗语言解释技术原理，降低理解门槛",
+      "AI Agent 构建教程：手把手教学，配套完整代码仓库",
+      "行业趋势分析：结合数据报告，解读 AI 领域最新动向"
+    ],
+    "riskNotes": [
+      "AI 工具更新迭代快，内容需标注版本和测试时间，避免过时信息误导读者",
+      "技术对比类内容需确保测试条件公平，避免被质疑恰饭或预设立场",
+      "副业变现类内容需控制读者预期，标注'个人经验、仅供参考'等提示"
+    ]
+  },
+  "collectStats": {
+    "startTime": "2026-06-09T00:30:00",
+    "endTime": "2026-06-09T00:30:08",
+    "platformStats": {
+      "douyin": {
+        "sampleSize": 5,
+        "errorCount": 0
+      },
+      "xiaohongshu": {
+        "sampleSize": 5,
+        "errorCount": 0
+      },
+      "wechat": {
+        "sampleSize": 5,
+        "errorCount": 0
+      }
+    },
+    "totalItems": 15
+  },
+  "meta": {
+    "skillsLoaded": 4,
+    "buildTime": "2026-06-10T08:26:12.774866",
+    "version": "1.0.0"
+  }
+}

@@ -1,0 +1,104 @@
+name: Daily AI Hot Radar
+
+on:
+  schedule:
+    # 每天北京时间 00:30 (UTC+8 = 16:30 UTC 前一天)
+    - cron: "30 16 * * *"
+  workflow_dispatch:  # 手动触发
+  push:
+    branches: [main]
+    paths-ignore:
+      - "README.md"
+      - ".gitignore"
+      - "LICENSE"
+
+env:
+  PYTHON_VERSION: "3.11"
+
+jobs:
+  build:
+    name: 🤖 每日 AI 热点采集与分析
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: 📥 检出代码
+        uses: actions/checkout@v4
+
+      - name: 🐍 安装 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: 📦 安装依赖
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests openai
+
+      - name: 🤖 运行 DailyAihotAgentRunner
+        env:
+          REDFOX_API_KEY: ${{ secrets.REDFOX_API_KEY }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
+        run: |
+          python -m src.run_daily_agent --date $(date +%Y-%m-%d)
+
+      - name: ✅ 验证输出
+        run: |
+          if [ ! -f dist/index.html ]; then
+            echo "❌ dist/index.html 未生成"
+            exit 1
+          fi
+          if [ ! -f dist/data/latest.json ]; then
+            echo "❌ dist/data/latest.json 未生成"
+            exit 1
+          fi
+
+          # 检查数据完整性
+          python -c "
+          import json
+          with open('dist/data/latest.json') as f:
+              data = json.load(f)
+          platforms = data.get('platforms', {})
+          total = sum(p.get('sampleSize', 0) for p in platforms.values())
+          print(f'总数据量: {total} 条')
+          for name, pdata in platforms.items():
+              print(f'  {name}: {pdata.get(\"sampleSize\", 0)} 条, 错误 {len(pdata.get(\"errors\", []))} 个')
+          # 任一平台 0 条数据标记失败
+          zero = [n for n, p in platforms.items() if p.get('sampleSize', 0) == 0]
+          if zero:
+              print(f'⚠️ 以下平台采集量为 0: {zero}')
+              exit(1)
+          print('✅ 数据验证通过')
+          "
+
+      - name: 📤 上传站点产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: aihot-site
+          path: dist/
+          retention-days: 7
+
+  deploy:
+    name: 🚀 部署到服务器
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+
+    steps:
+      - name: 📥 下载站点产物
+        uses: actions/download-artifact@v4
+        with:
+          name: aihot-site
+          path: dist/
+
+      - name: 🚀 同步到服务器
+        uses: easingthemes/ssh-deploy@v4
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          ARGS: "-rlgoDzvc -i --delete"
+          SOURCE: "dist/"
+          REMOTE_HOST: ${{ secrets.DEPLOY_HOST }}
+          REMOTE_USER: ${{ secrets.DEPLOY_USER }}
+          TARGET: ${{ secrets.DEPLOY_PATH }}

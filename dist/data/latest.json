@@ -1,0 +1,173 @@
+{
+  "date": "2026-06-10",
+  "platforms": {
+    "douyin": {
+      "platform": "douyin",
+      "sampleSize": 5,
+      "items": [
+        {
+          "title": "AI 工具推荐 | 2026-06-10 最新 AI 应用合集",
+          "author": "AI科技观察",
+          "likeCount": 12500,
+          "commentCount": 890,
+          "shareCount": 3400,
+          "collectCount": 5600,
+          "commentHotWords": [
+            "好用",
+            "推荐",
+            "效率"
+          ],
+          "coverUrl": "",
+          "workUrl": "https://www.douyin.com/video/example1",
+          "_platform": "douyin",
+          "_baseScore": 68
+        },
+        {
+          "title": "DeepSeek vs GPT-5 实测对比，谁更强？",
+          "author": "码农实验室",
+          "likeCount": 8900,
+          "commentCount": 1200,
+          "shareCount": 2100,
+          "collectCount": 4300,
+          "commentHotWords": [
+            "DeepSeek",
+            "GPT",
+            "对比"
+          ],
+          "coverUrl": "",
+          "workUrl": "https://www.douyin.com/video/example2",
+          "_platform": "douyin",
+          "_baseScore": 68
+        }
+      ],
+      "errors": []
+    },
+    "xiaohongshu": {
+      "platform": "xiaohongshu",
+      "sampleSize": 5,
+      "items": [
+        {
+          "title": "2026 年必备的 10 个 AI 编程工具",
+          "author": "程序员小鹿",
+          "likeCount": 6700,
+          "collectCount": 8900,
+          "commentCount": 450,
+          "shareCount": 1200,
+          "coverUrl": "",
+          "workUrl": "https://www.xiaohongshu.com/note/example1",
+          "_platform": "xiaohongshu",
+          "_baseScore": 68
+        }
+      ],
+      "errors": []
+    },
+    "wechat": {
+      "platform": "wechat",
+      "sampleSize": 5,
+      "items": [
+        {
+          "title": "ChatGPT 与 Codex：AI 编程工具的终极对决",
+          "author": "新智元",
+          "readCount": 100001,
+          "likeCount": 1200,
+          "wowCount": 340,
+          "commentCount": 89,
+          "shareCount": 5600,
+          "publishTime": "2026-06-10T08:00:00",
+          "workUrl": "https://mp.weixin.qq.com/s/example1",
+          "_platform": "wechat",
+          "_baseScore": 68
+        }
+      ],
+      "errors": []
+    }
+  },
+  "analysis": {
+    "dailySummary": {
+      "totalCollected": 15,
+      "hotTopics": [
+        "AI 工具推荐 | 2026-06-10",
+        "DeepSeek vs GPT-5 实测",
+        "2026 年必备的 10 个 AI 编程",
+        "ChatGPT 与 Codex：AI 编"
+      ],
+      "overview": "2026-06-10 共采集 15 条 AI 相关数据。(LLM 分析暂不可用: 未配置 LLM_API_KEY，使用模板生成)"
+    },
+    "topPicks": [
+      {
+        "title": "AI 工具推荐 | 2026-06-10 最新 AI 应用合集",
+        "platform": "douyin",
+        "opportunityScore": 68,
+        "reason": "基于互动数据自动推荐",
+        "contentAngle": "可结合自身领域做深度解读",
+        "riskNote": "请人工核实内容质量",
+        "url": "https://www.douyin.com/video/example1"
+      },
+      {
+        "title": "DeepSeek vs GPT-5 实测对比，谁更强？",
+        "platform": "douyin",
+        "opportunityScore": 68,
+        "reason": "基于互动数据自动推荐",
+        "contentAngle": "可结合自身领域做深度解读",
+        "riskNote": "请人工核实内容质量",
+        "url": "https://www.douyin.com/video/example2"
+      },
+      {
+        "title": "2026 年必备的 10 个 AI 编程工具",
+        "platform": "xiaohongshu",
+        "opportunityScore": 68,
+        "reason": "基于互动数据自动推荐",
+        "contentAngle": "可结合自身领域做深度解读",
+        "riskNote": "请人工核实内容质量",
+        "url": "https://www.xiaohongshu.com/note/example1"
+      },
+      {
+        "title": "ChatGPT 与 Codex：AI 编程工具的终极对决",
+        "platform": "wechat",
+        "opportunityScore": 68,
+        "reason": "基于互动数据自动推荐",
+        "contentAngle": "可结合自身领域做深度解读",
+        "riskNote": "请人工核实内容质量",
+        "url": "https://mp.weixin.qq.com/s/example1"
+      }
+    ],
+    "platformInsights": {
+      "douyin": "今日采集 5 条数据",
+      "xiaohongshu": "今日采集 5 条数据",
+      "wechat": "今日采集 5 条数据"
+    },
+    "contentAngles": [
+      "AI 工具使用教程与评测",
+      "大模型行业应用案例",
+      "AI 编程效率提升实践"
+    ],
+    "riskNotes": [
+      "LLM 分析引擎异常: 未配置 LLM_API_KEY，使用模板生成，当前为模板生成结果",
+      "建议人工审核推荐内容的相关性和时效性"
+    ]
+  },
+  "collectStats": {
+    "startTime": "2026-06-10T00:30:00",
+    "endTime": "2026-06-10T00:30:05",
+    "platformStats": {
+      "douyin": {
+        "sampleSize": 5,
+        "errorCount": 0
+      },
+      "xiaohongshu": {
+        "sampleSize": 5,
+        "errorCount": 0
+      },
+      "wechat": {
+        "sampleSize": 5,
+        "errorCount": 0
+      }
+    },
+    "totalItems": 15
+  },
+  "meta": {
+    "skillsLoaded": 4,
+    "buildTime": "2026-06-10T08:42:50.592235",
+    "version": "1.0.0"
+  }
+}
