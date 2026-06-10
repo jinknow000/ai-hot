@@ -81,34 +81,42 @@ stages:
             script: |
               set -e
               if [ -z "${DEPLOY_HOST}" ]; then
-                echo "⏭️ DEPLOY_HOST 未配置，跳过部署"
+                echo "⏭️  DEPLOY_HOST 未配置，跳过部署"
                 exit 0
               fi
 
               echo "🚀 部署到 ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}"
 
-              # 配置 SSH
+              # 配置 SSH (密钥在 Gitee 环境变量中已 base64 编码)
               mkdir -p ~/.ssh
-              echo "${DEPLOY_SSH_KEY}" > ~/.ssh/deploy_key
+              echo "${DEPLOY_SSH_KEY}" | base64 -d > ~/.ssh/deploy_key
               chmod 600 ~/.ssh/deploy_key
-              cat >> ~/.ssh/config << EOF
+              cat > ~/.ssh/config << EOF
               Host deploy_server
                 HostName ${DEPLOY_HOST}
                 User ${DEPLOY_USER}
                 IdentityFile ~/.ssh/deploy_key
                 StrictHostKeyChecking no
+                CheckHostIP no
               EOF
 
-              # 同步文件
+              # 同步站点文件
               rsync -avz --delete \
                 --exclude='.git' \
                 --exclude='__pycache__' \
                 dist/ deploy_server:${DEPLOY_PATH}/
 
-              echo "✅ 部署完成: ${DEPLOY_HOST}"
+              # 同步 API 代理文件
+              rsync -avz \
+                src/api_proxy.py deploy_server:${DEPLOY_PATH}/src/
+
+              # 重载 API 代理 (如果以 systemd 运行)
+              ssh deploy_server "systemctl reload aihot-api 2>/dev/null || true"
+
+              echo "✅ 部署完成: http://${DEPLOY_HOST}"
 
               # 清理
-              rm -f ~/.ssh/deploy_key
+              rm -f ~/.ssh/deploy_key ~/.ssh/config
 
 # ========== 构建通知 ==========
 notifications:
