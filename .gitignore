@@ -26,3 +26,4 @@ dist/data/archive/
 # Logs
 *.log
 logs/
+.wrangler/
