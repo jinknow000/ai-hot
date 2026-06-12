@@ -8,7 +8,7 @@ name: "Daily AI Hot Radar"
 # ========== 触发器 ==========
 triggers:
   schedule:
-    - cron: "30 3 * * *"         # 北京时间 11:30 (UTC+8)
+    - cron: "20 6 * * *"         # 北京时间 14:20 (UTC+8)
   manual: enable
 
 # ========== 流水线阶段 ==========
