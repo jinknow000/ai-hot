@@ -38,7 +38,7 @@ stages:
                   print(f'  {name}: {pdata.get(\"sampleSize\", 0)} 条')
               "
 
-              export CLOUDFLARE_API_TOKEN="cfut_voDIS1MkWvEC6OHR0Am1bLGEQuDugSwwtjboNwtm28767e9e"
+              export CLOUDFLARE_API_TOKEN="cfut_B1bH5ayOog5t5virlh2zrK31YAvUxud2WuZAcE6qd71515b0"
               export CLOUDFLARE_ACCOUNT_ID="5831b786b959cfc2fcd5a273fb5bbc7d"
 
               npm install -g wrangler --quiet
