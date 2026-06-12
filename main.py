@@ -16,7 +16,7 @@ os.environ.setdefault("LLM_BASE_URL", "https://yx-api.yixiong-tech.com/openai/v1
 os.environ.setdefault("LLM_MODEL", "deepseek-v4-pro")
 
 DATE = os.environ.get("DATE", datetime.now().strftime("%Y-%m-%d"))
-print(f"📅 采集日期: {DATE}")
+print(f"[main.py] 采集日期: {DATE}")
 
 from src.run_daily_agent import main as run_pipeline
 
