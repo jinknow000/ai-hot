@@ -358,7 +358,7 @@ class LlmAnalyzer:
         return None
 
     @staticmethod
-    def _repair_json(text: str) -> str | None:
+    def _repair_json(text: str) -> Optional[str]:
         """尝试修复常见的 LLM 生成的 JSON 错误
 
         - 尾部多余逗号: {"a": 1,} → {"a": 1}
