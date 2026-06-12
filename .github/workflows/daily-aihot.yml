@@ -6,7 +6,7 @@ on:
     - cron: "30 3 * * *"
   workflow_dispatch:  # 手动触发
   push:
-    branches: [main]
+    branches: [master]
     paths-ignore:
       - "README.md"
       - ".gitignore"
@@ -73,32 +73,27 @@ jobs:
           print('✅ 数据验证通过')
           "
 
-      - name: 📤 上传站点产物
-        uses: actions/upload-artifact@v4
+      - name: 📤 上传 GitHub Pages 产物
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: aihot-site
           path: dist/
-          retention-days: 7
 
   deploy:
-    name: 🚀 部署到服务器
+    name: 🚀 部署到 GitHub Pages
     needs: build
     runs-on: ubuntu-latest
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
 
-    steps:
-      - name: 📥 下载站点产物
-        uses: actions/download-artifact@v4
-        with:
-          name: aihot-site
-          path: dist/
+    # GitHub Pages 所需权限
+    permissions:
+      pages: write
+      id-token: write
 
-      - name: 🚀 同步到服务器
-        uses: easingthemes/ssh-deploy@v4
-        with:
-          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
-          ARGS: "-rlgoDzvc -i --delete"
-          SOURCE: "dist/"
-          REMOTE_HOST: ${{ secrets.DEPLOY_HOST }}
-          REMOTE_USER: ${{ secrets.DEPLOY_USER }}
-          TARGET: ${{ secrets.DEPLOY_PATH }}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: 🚀 部署
+        id: deployment
+        uses: actions/deploy-pages@v4
