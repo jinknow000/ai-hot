@@ -38,10 +38,10 @@ stages:
           inputs:
             script: |
               set -e
-              export REDFOX_API_KEY="ak_31fa2c7b257c47fab7f84229da48f247"
-              export LLM_API_KEY="sk-T-BGJJiZO338gkWaPVOywA"
-              export LLM_BASE_URL="https://yx-api.yixiong-tech.com/openai/v1"
-              export LLM_MODEL="deepseek-v4-pro"
+              export REDFOX_API_KEY="${REDFOX_API_KEY}"
+              export LLM_API_KEY="${LLM_API_KEY}"
+              export LLM_BASE_URL="${LLM_BASE_URL}"
+              export LLM_MODEL="${LLM_MODEL}"
 
               DATE=$(TZ='Asia/Shanghai' date +%Y-%m-%d)
               echo "采集日期: $DATE"
@@ -74,8 +74,8 @@ stages:
           inputs:
             script: |
               set -e
-              export CLOUDFLARE_API_TOKEN="cfut_voDIS1MkWvEC6OHR0Am1bLGEQuDugSwwtjboNwtm28767e9e"
-              export CLOUDFLARE_ACCOUNT_ID="5831b786b959cfc2fcd5a273fb5bbc7d"
+              export CLOUDFLARE_API_TOKEN="${CLOUDFLARE_API_TOKEN}"
+              export CLOUDFLARE_ACCOUNT_ID="${CLOUDFLARE_ACCOUNT_ID}"
 
               echo "部署到 Cloudflare Pages..."
               npx wrangler pages deploy ./dist --project-name=ai-hot --commit-dirty=true
