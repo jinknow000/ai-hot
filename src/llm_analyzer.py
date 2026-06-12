@@ -241,28 +241,144 @@ class LlmAnalyzer:
 """
 
     def _call_llm(self, prompt: str) -> dict:
-        """调用 OpenAI 兼容 LLM API"""
-        response = self.client.chat.completions.create(
-            model=self.model,
-            messages=[
-                {
-                    "role": "system",
-                    "content": "你是一个精准的数据分析引擎。请严格按照 JSON Schema 返回结构化分析结果，不要包含任何额外文本或 markdown 标记。",
-                },
-                {"role": "user", "content": prompt},
-            ],
-            temperature=0.3,
-            max_tokens=4096,
-        )
+        """调用 OpenAI 兼容 LLM API，返回解析后的 JSON dict
+
+        三层容错机制:
+        1. response_format 强制 JSON 输出（兼容 OpenAI/DeepSeek）
+        2. 正则提取最外层 {...}（处理 markdown 包裹 / 多余文本）
+        3. 解析失败时重试一次，将错误信息反馈给 LLM
+        """
+        messages = [
+            {
+                "role": "system",
+                "content": "你是一个精准的数据分析引擎。请严格按照 JSON Schema 返回结构化分析结果，"
+                           "不要包含任何额外文本或 markdown 标记。只输出纯 JSON。",
+            },
+            {"role": "user", "content": prompt},
+        ]
+
+        # 第 1 层: 尝试使用 response_format 强制 JSON 模式
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=messages,
+                temperature=0.3,
+                max_tokens=4096,
+                response_format={"type": "json_object"},
+            )
+        except Exception:
+            # 部分 API 不支持 response_format → 降级调用
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=messages,
+                temperature=0.3,
+                max_tokens=4096,
+            )
 
         content = response.choices[0].message.content.strip()
 
-        # 去除可能的 markdown 代码块标记
-        if content.startswith("```"):
-            content = re.sub(r'^```(?:json)?\s*', '', content)
-            content = re.sub(r'\s*```$', '', content)
+        # 第 2 层: JSON 提取（多策略）
+        parsed = self._extract_json(content)
+        if parsed is not None:
+            return parsed
 
-        return json.loads(content)
+        # 第 3 层: 重试 — 将错误反馈给 LLM
+        retry_messages = messages + [
+            {"role": "assistant", "content": content},
+            {"role": "user", "content": (
+                "你返回的内容不是合法 JSON，无法被 json.loads() 解析。"
+                "请检查是否有多余逗号、未闭合的引号或括号、或 markdown 包裹。"
+                "请直接输出纯 JSON，不要包含 ``` 标记。"
+            )},
+        ]
+        try:
+            retry_response = self.client.chat.completions.create(
+                model=self.model,
+                messages=retry_messages,
+                temperature=0.1,
+                max_tokens=4096,
+                response_format={"type": "json_object"},
+            )
+        except Exception:
+            retry_response = self.client.chat.completions.create(
+                model=self.model,
+                messages=retry_messages,
+                temperature=0.1,
+                max_tokens=4096,
+            )
+
+        retry_content = retry_response.choices[0].message.content.strip()
+        parsed = self._extract_json(retry_content)
+        if parsed is not None:
+            return parsed
+
+        # 重试仍然失败 → 抛出异常，由 analyze() 降级到模板
+        raise ValueError(
+            f"LLM 返回内容无法解析为 JSON，已重试 1 次。"
+            f"原始内容前 200 字符: {content[:200]}"
+        )
+
+    def _extract_json(self, content: str) -> dict | None:
+        """从 LLM 响应中提取 JSON 对象，返回 dict 或 None"""
+        if not content:
+            return None
+
+        # 策略 1: 直接解析
+        try:
+            return json.loads(content)
+        except json.JSONDecodeError:
+            pass
+
+        # 策略 2: 去除 markdown 代码块标记后解析
+        cleaned = content.strip()
+        if cleaned.startswith("```"):
+            cleaned = re.sub(r'^```(?:json)?\s*\n?', '', cleaned)
+            cleaned = re.sub(r'\n?\s*```\s*$', '', cleaned)
+        try:
+            return json.loads(cleaned)
+        except json.JSONDecodeError:
+            pass
+
+        # 策略 3: 正则提取最外层 {...}（处理前后有多余文本的情况）
+        m = re.search(r'\{[\s\S]*\}', cleaned)
+        if m:
+            try:
+                return json.loads(m.group())
+            except json.JSONDecodeError:
+                pass
+
+        # 策略 4: 修复常见 JSON 错误后重试
+        fixed = self._repair_json(cleaned)
+        if fixed:
+            try:
+                return json.loads(fixed)
+            except json.JSONDecodeError:
+                pass
+
+        return None
+
+    @staticmethod
+    def _repair_json(text: str) -> str | None:
+        """尝试修复常见的 LLM 生成的 JSON 错误
+
+        - 尾部多余逗号: {"a": 1,} → {"a": 1}
+        - 数组尾部逗号: [1,2,] → [1,2]
+        - 对象属性间缺少逗号: {"a":1\n"b":2} → {"a":1,\n"b":2}
+        """
+        if not text:
+            return None
+
+        repaired = text
+        # 去除尾部逗号 (在 } 或 ] 之前)
+        repaired = re.sub(r',\s*(\})', r'\1', repaired)
+        repaired = re.sub(r',\s*(\])', r'\1', repaired)
+
+        # 修复缺失逗号: value\n"key" → value,\n"key"（value 可以是 "str"/数字/bool/null/}]）
+        repaired = re.sub(r'([\d}\]"\w])\s*\n\s*(")', r'\1,\n\2', repaired)
+
+        if repaired != text:
+            return repaired
+        return None
 
     def _validate_and_correct(self, llm_output: dict,
                               base_scores: dict) -> dict:
