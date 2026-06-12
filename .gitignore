@@ -27,3 +27,6 @@ dist/data/archive/
 *.log
 logs/
 .wrangler/
+
+# Gitee CI (含明文 key，不上传 GitHub)
+.gitee-ci.yml
