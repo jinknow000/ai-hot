@@ -12,6 +12,12 @@ on:
       - ".gitignore"
       - "LICENSE"
 
+# GitHub Pages 部署所需权限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 env:
   PYTHON_VERSION: "3.11"
 
