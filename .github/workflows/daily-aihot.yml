@@ -65,11 +65,14 @@ jobs:
           print(f'总数据量: {total} 条')
           for name, pdata in platforms.items():
               print(f'  {name}: {pdata.get(\"sampleSize\", 0)} 条, 错误 {len(pdata.get(\"errors\", []))} 个')
-          # 任一平台 0 条数据标记失败
-          zero = [n for n, p in platforms.items() if p.get('sampleSize', 0) == 0]
-          if zero:
-              print(f'⚠️ 以下平台采集量为 0: {zero}')
+          # 只有公众号 0 条才标记失败（抖音/小红书暂不支持关键词搜索）
+          wc = platforms.get('wechat', {}).get('sampleSize', 0)
+          if wc == 0:
+              print('❌ 公众号采集量为 0，标记失败')
               exit(1)
+          for pname in ['douyin', 'xiaohongshu']:
+              if platforms.get(pname, {}).get('sampleSize', 0) == 0:
+                  print(f'⚠️ {pname} 采集量为 0（RedFox API 暂不支持该平台搜索）')
           print('✅ 数据验证通过')
           "
 
