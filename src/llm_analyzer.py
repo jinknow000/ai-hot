@@ -18,7 +18,7 @@ import os
 import math
 import re
 from datetime import datetime
-from typing import Optional
+from typing import Dict, Optional
 
 
 class LlmAnalyzer:
@@ -318,7 +318,7 @@ class LlmAnalyzer:
             f"原始内容前 200 字符: {content[:200]}"
         )
 
-    def _extract_json(self, content: str) -> dict | None:
+    def _extract_json(self, content: str) -> Optional[Dict]:
         """从 LLM 响应中提取 JSON 对象，返回 dict 或 None"""
         if not content:
             return None
